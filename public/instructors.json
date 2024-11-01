@@ -1,0 +1,98 @@
+[
+    {
+        "id": 1,
+        "name": "John Doe",
+        "skillPosition": "Frontend Developer",
+        "courseCredit": 3,
+        "email": "johndoe@example.com",
+        "image": "https://randomuser.me/api/portraits/men/1.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Sarah Smith",
+        "skillPosition": "Backend Developer",
+        "courseCredit": 4,
+        "email": "sarahsmith@example.com",
+        "image": "https://randomuser.me/api/portraits/women/2.jpg"
+    },
+    {
+        "id": 3,
+        "name": "James Brown",
+        "skillPosition": "Fullstack Developer",
+        "courseCredit": 5,
+        "email": "jamesbrown@example.com",
+        "image": "https://randomuser.me/api/portraits/men/3.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Jessica Wilson",
+        "skillPosition": "UX Designer",
+        "courseCredit": 2,
+        "email": "jessicawilson@example.com",
+        "image": "https://randomuser.me/api/portraits/women/4.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Michael Johnson",
+        "skillPosition": "Data Scientist",
+        "courseCredit": 4,
+        "email": "michaeljohnson@example.com",
+        "image": "https://randomuser.me/api/portraits/men/5.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Emily Davis",
+        "skillPosition": "Project Manager",
+        "courseCredit": 3,
+        "email": "emilydavis@example.com",
+        "image": "https://randomuser.me/api/portraits/women/6.jpg"
+    },
+    {
+        "id": 7,
+        "name": "Daniel Garcia",
+        "skillPosition": "DevOps Engineer",
+        "courseCredit": 4,
+        "email": "danielgarcia@example.com",
+        "image": "https://randomuser.me/api/portraits/men/7.jpg"
+    },
+    {
+        "id": 8,
+        "name": "Sophia Miller",
+        "skillPosition": "Product Designer",
+        "courseCredit": 3,
+        "email": "sophiamiller@example.com",
+        "image": "https://randomuser.me/api/portraits/women/8.jpg"
+    },
+    {
+        "id": 9,
+        "name": "Chris Wilson",
+        "skillPosition": "Software Engineer",
+        "courseCredit": 5,
+        "email": "chriswilson@example.com",
+        "image": "https://randomuser.me/api/portraits/men/9.jpg"
+    },
+    {
+        "id": 10,
+        "name": "Amanda Thompson",
+        "skillPosition": "QA Engineer",
+        "courseCredit": 2,
+        "email": "amandathompson@example.com",
+        "image": "https://randomuser.me/api/portraits/women/10.jpg"
+    },
+    {
+        "id": 11,
+        "name": "Matthew Lee",
+        "skillPosition": "Machine Learning Engineer",
+        "courseCredit": 4,
+        "email": "matthewlee@example.com",
+        "image": "https://randomuser.me/api/portraits/men/11.jpg"
+    },
+    {
+        "id": 12,
+        "name": "Olivia Martinez",
+        "skillPosition": "Cloud Architect",
+        "courseCredit": 5,
+        "email": "oliviamartinez@example.com",
+        "image": "https://randomuser.me/api/portraits/women/12.jpg"
+    }
+]
