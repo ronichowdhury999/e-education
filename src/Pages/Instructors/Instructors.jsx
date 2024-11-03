@@ -2,13 +2,16 @@ import { Link, useLoaderData } from "react-router-dom"
 import Container from "../../Components/Container/Container";
 import { useState } from "react";
 import Instructor from "./instructor";
+import Navbar from "../../Components/Navbar/Navbar";
 
 const Instructors = () => {
     const instructorsData = useLoaderData()
     const [showInstructor, setShowInstructor] = useState(6)
 
     return (
-        <Container>
+        <div>
+            <Navbar/>
+            <Container>
             <div className="text-center my-20">
                 <h2 className='text-5xl font-bold'>Instructors</h2>
                 <div className='flex justify-center items-center gap-4 my-8'> <Link to="/" className='font-semibold'>Home</Link> <span className='bg-orange-500 w-2 h-1 rounded-xl'> {""}</span>
@@ -28,6 +31,7 @@ const Instructors = () => {
                 }
             </div>
         </Container>
+        </div>
     )
 }
 
