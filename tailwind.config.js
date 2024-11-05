@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {},
+    fontFamily:{
+      roboto:"'roboto',sans-serif"
+    }
   },
   // eslint-disable-next-line no-undef
   plugins: [ require('daisyui'),
