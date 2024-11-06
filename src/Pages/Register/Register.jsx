@@ -1,19 +1,39 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom"
 import useAuth from "../../Components/Hooks/useAuth";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 const Register = () => {
     const { createUser } = useAuth()
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const [error, setError] = useState('')
+    const { register, reset, handleSubmit, formState: { errors } } = useForm();
+    // !/^(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/
     const onSubmit = data => {
-        console.log(data)
         const { email, password } = data
+        if (password.length < 8) {
+            setError('Password must be at least 8 characters');
+            return;
+        }
+        if (!/^(?=.*[A-Z]).+$/.test(password)) {
+            setError('Password must contain at least one uppercase letter')
+            return;
+        }
+        if (!/^(?=.*[!@#$%^&*]).+$/.test(password)) {
+            setError('Password must contain at least one special character')
+            return;
+        }
         createUser(email, password)
             .then(result => {
                 const currentUser = result.user;
-                console.log('create user',currentUser);
+                console.log('create user', currentUser);
+                setError('')
+                reset()
+                toast.success('user created successfully')
             })
-            .catch(error => console.error(error))
+            .catch(error => {
+                toast.error(error.message)
+            })
     }
     return (
         <div className="bgLogin-img grid lg:grid-cols-2">
@@ -86,6 +106,7 @@ const Register = () => {
                         </div>
                         {errors.password && <p className="text-red-500 text-sm pt-2">provide your password</p>
                         }
+                        {error && <p className="text-red-500">{error}</p>}
                     </div>
                     <div className="form-control mt-6">
                         <button className="btn btn-error">Register</button>
