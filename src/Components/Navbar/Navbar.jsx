@@ -1,6 +1,14 @@
 import { Link, NavLink } from "react-router-dom"
 import Container from "../Container/Container"
+import useAuth from "../Hooks/useAuth"
 const Navbar = () => {
+    const { user, logOut } = useAuth();
+
+    const handelLogOut = () => {
+        logOut()
+            .then()
+            .catch()
+    }
     const items =
         <>
             <NavLink className={({ isActive, isPending }) => isPending ? 'pending' : isActive ? 'text-red-500 rounded-lg' : ''} to="/"><li><a>Home</a></li></NavLink>
@@ -35,6 +43,7 @@ const Navbar = () => {
                                 tabIndex={0}
                                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                                 {items}
+                                {user && <li><a href="https://mail.google.com/mail" target="_blank">{user?.email}</a></li>}
                             </ul>
                         </div>
                         <img className="w-40" src="https://dreamslms-wp.dreamstechnologies.com/wp-content/themes/dreamslms/assets/images/logo.svg" alt="logo" />
@@ -42,10 +51,15 @@ const Navbar = () => {
                     <div className="navbar-center hidden lg:flex">
                         <ul className="menu menu-horizontal px-1">
                             {items}
+                            {user && <li><a href="https://mail.google.com/mail" target="_blank">{user?.email}</a></li>}
                         </ul>
                     </div>
                     <div className="navbar-end">
-                        <Link to="/login">Login</Link>
+                        {user
+                            ?
+                            <button className="btn btn-outline btn-error" onClick={handelLogOut}>LogOut</button>
+                            :
+                            <Link className="btn btn-outline btn-error" to="/login">Login</Link>}
                     </div>
                 </div>
             </Container>

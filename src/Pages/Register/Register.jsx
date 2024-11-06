@@ -11,9 +11,9 @@ const Register = () => {
         createUser(email, password)
             .then(result => {
                 const currentUser = result.user;
-                console.log(currentUser);
+                console.log('create user',currentUser);
             })
-            .then(error => console.error(error))
+            .catch(error => console.error(error))
     }
     return (
         <div className="bgLogin-img grid lg:grid-cols-2">

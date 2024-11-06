@@ -1,11 +1,20 @@
 import { Link } from "react-router-dom";
 import "./Login.css";
 import { useForm } from "react-hook-form";
+import useAuth from "../../Components/Hooks/useAuth";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
 const Login = () => {
+    const { signInUser} = useAuth();
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
-        console.log(data)
+        const { email, password } = data;
+        signInUser(email, password)
+            .then(result => {
+                const currentUser = result.user;
+                console.log('sign in user', currentUser);
+            })
+            .catch(error => console.error(error))
     }
     return (
         <div className="bgLogin-img h-screen border grid lg:grid-cols-2 md:grid-cols-1">
@@ -62,10 +71,7 @@ const Login = () => {
                     </div>
                     <button className="mt-4 w-full btn btn-error">Login</button>
                 </form>
-                <div className="my-4 flex gap-4 justify-center">
-                    <button className="btn">Google</button>
-                    <button className="btn">Github</button>
-                </div>
+               <SocialLogin/>
                 <p className="text-center mt-4">New user ? Please  <Link to="/register" className="text-red-500 ml-4">Create an account</Link></p>
             </div>
         </div>
