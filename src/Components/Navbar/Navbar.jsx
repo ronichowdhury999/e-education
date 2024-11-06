@@ -1,6 +1,5 @@
 import { Link, NavLink } from "react-router-dom"
 import Container from "../Container/Container"
-
 const Navbar = () => {
     const items =
         <>

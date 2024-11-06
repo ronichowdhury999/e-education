@@ -1,6 +1,20 @@
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom"
+import useAuth from "../../Components/Hooks/useAuth";
 
 const Register = () => {
+    const { createUser } = useAuth()
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const onSubmit = data => {
+        console.log(data)
+        const { email, password } = data
+        createUser(email, password)
+            .then(result => {
+                const currentUser = result.user;
+                console.log(currentUser);
+            })
+            .then(error => console.error(error))
+    }
     return (
         <div className="bgLogin-img grid lg:grid-cols-2">
             <div className="p-12 lg:grid hidden">
@@ -17,24 +31,65 @@ const Register = () => {
                     <Link to="/" className="underline cursor-pointer hover:text-red-600">Back to home</Link>
                 </div>
                 <h1 className="text-3xl font-bold mt-6">Registration account</h1>
-                <form>
-                    <div className="mt-4">
-                        <p className="py-2">Your full name :</p>
-                        <input className="w-full border p-4 border-gray-200 rounded-lg" type="text" name="name" placeholder="Name" />
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    {/* Name */}
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Name</span>
+                        </label>
+                        <input
+                            type="name"
+                            {...register('fullName', { required: true })}
+                            placeholder="name"
+                            className="input input-bordered"
+                            required />
+                        {errors.fullName && <p className="text-red-500 text-sm pt-2">Provide your name</p>}
                     </div>
-                    <div className="mt-4">
-                        <p className="py-2">User name or email address</p>
-                        <input className="w-full border p-4 border-gray-200 rounded-lg" type="email" name="email" placeholder="Enter your email address" />
+                    {/* EMAIL */}
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Email</span>
+                        </label>
+                        <input
+                            type="email"
+                            {...register('email', { required: true })}
+                            placeholder="email"
+                            className="input input-bordered"
+                            required />
+                        {errors.email && <p className="text-red-500 text-sm pt-2">provide your email</p>}
                     </div>
-                    <div className="my-4">
-                        <p className="py-2">Password</p>
-                        <input className="w-full border p-4 border-gray-200 rounded-lg" type="password" name="password" placeholder="Enter your valid password" />
+                    {/* photo url */}
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Photo URL</span>
+                        </label>
+                        <input
+                            type="text"
+                            {...register('photoUrl', { required: true })}
+                            placeholder="Photo url"
+                            className="input input-bordered"
+                            required />
+                        {errors.photoUrl && <p className="text-red-500 text-sm pt-2">provide your photo url</p>}
                     </div>
-                    <div className="my-4">
-                        <p className="py-2">Confirm password</p>
-                        <input className="w-full border p-4 border-gray-200 rounded-lg" type="password" name="password" placeholder="Confirm password" />
+                    {/* PASSWORD */}
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Password</span>
+                        </label>
+                        <div className="relative">
+                            <input
+                                type='text'
+                                {...register('password', { required: true })}
+                                placeholder="password"
+                                className="input input-bordered w-full"
+                                required />
+                        </div>
+                        {errors.password && <p className="text-red-500 text-sm pt-2">provide your password</p>
+                        }
                     </div>
-                    <button className="mt-4 w-full btn btn-error">Registration</button>
+                    <div className="form-control mt-6">
+                        <button className="btn btn-error">Register</button>
+                    </div>
                 </form>
                 <p className="text-center mt-4">Already have an account ? Please  <Link to="/login" className="text-red-500 ml-2">Login</Link></p>
             </div>
