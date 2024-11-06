@@ -3,14 +3,17 @@ import { Link } from "react-router-dom"
 import useAuth from "../../Components/Hooks/useAuth";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { FaEyeSlash } from "react-icons/fa";
+import { FaRegEye } from "react-icons/fa";
 
 const Register = () => {
     const { createUser } = useAuth()
     const [error, setError] = useState('')
+    const [showPassword, setShowPassword] = useState(false);
     const { register, reset, handleSubmit, formState: { errors } } = useForm();
     // !/^(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/
     const onSubmit = data => {
-        const { email, password } = data
+        const { email, password, ConfirmPassword } = data
         if (password.length < 8) {
             setError('Password must be at least 8 characters');
             return;
@@ -23,11 +26,15 @@ const Register = () => {
             setError('Password must contain at least one special character')
             return;
         }
+        if (password !== ConfirmPassword) {
+            setError('please enter your same confirmation password')
+            return;
+        }
+        setError('')
         createUser(email, password)
             .then(result => {
                 const currentUser = result.user;
                 console.log('create user', currentUser);
-                setError('')
                 reset()
                 toast.success('user created successfully')
             })
@@ -98,13 +105,33 @@ const Register = () => {
                         </label>
                         <div className="relative">
                             <input
-                                type='text'
+                                type={showPassword ? 'text' : 'password'}
                                 {...register('password', { required: true })}
                                 placeholder="password"
                                 className="input input-bordered w-full"
                                 required />
+                            <button className="absolute top-3 right-3" onClick={() => setShowPassword(!showPassword)}>
+                                {showPassword ? <FaEyeSlash /> : <FaRegEye />}
+                            </button>
                         </div>
                         {errors.password && <p className="text-red-500 text-sm pt-2">provide your password</p>
+                        }
+                        {error && <p className="text-red-500">{error}</p>}
+                    </div>
+                    {/* Confirm password */}
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Confirm password</span>
+                        </label>
+                        <div className="relative">
+                            <input
+                                type={showPassword ? 'text' : 'password'}
+                                {...register('ConfirmPassword', { required: true })}
+                                placeholder="Confirm Password"
+                                className="input input-bordered w-full"
+                                required />
+                        </div>
+                        {errors.ConfirmPassword && <p className="text-red-500 text-sm pt-2">provide your confirm password</p>
                         }
                         {error && <p className="text-red-500">{error}</p>}
                     </div>
