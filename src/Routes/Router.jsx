@@ -4,54 +4,54 @@ import Home from "../Pages/Home/Home"
 import Error from "../Pages/Error/Error"
 import AboutUs from "../Pages/AboutUs/AboutUs"
 import Instructors from "../Pages/Instructors/Instructors"
-import Student from "../Pages/Student/Student"
 import ContactUs from "../Pages/ContactUs/ContactUs"
 import Login from "../Pages/Login/Login"
 import Register from "../Pages/Register/Register"
+import Students from "../Pages/Student/Students"
 
 const Router = createBrowserRouter([
     {
         path: '/',
-        element:<Root/>,
-        errorElement:<Error/>,
-        children:[
+        element: <Root />,
+        errorElement: <Error />,
+        children: [
             {
-                path : '/',
-                element:<Home/>
+                path: '/',
+                element: <Home />
             },
             {
-                path : '/aboutUs',
-                element:<AboutUs/>
+                path: '/aboutUs',
+                element: <AboutUs />
             },
             {
-                path : '/instructors',
-                element:<Instructors/>,
-                loader:()=> fetch('/instructors.json')
+                path: '/instructors',
+                element: <Instructors />,
+                loader: () => fetch('/instructors.json')
             },
             {
-                path : '/student',
-                element:<Student/>
+                path:'students',
+                element:<Students/>
             },
             {
-                path : '/blog',
-                element:<ContactUs/>
+                path: '/blog',
+                element: <ContactUs />
             },
             {
-                path : '/contactUs',
-                element:<ContactUs/>
+                path: '/contactUs',
+                element: <ContactUs />
             },
             {
-                path : '/login',
-                element:<Login/>
+                path: '/login',
+                element: <Login />
             },
             {
-                path : '/register',
-                element:<Register/>
+                path: '/register',
+                element: <Register />
             },
         ]
     }
 ])
-  
+
 
 
 export default Router

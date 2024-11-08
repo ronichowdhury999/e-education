@@ -7,13 +7,13 @@ import { FaEyeSlash } from "react-icons/fa";
 import { FaRegEye } from "react-icons/fa";
 
 const Register = () => {
-    const { createUser } = useAuth()
+    const { createUser, userUpdateProfile } = useAuth()
     const [error, setError] = useState('')
     const [showPassword, setShowPassword] = useState(false);
     const { register, reset, handleSubmit, formState: { errors } } = useForm();
-    // !/^(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/
     const onSubmit = data => {
-        const { email, password, ConfirmPassword } = data
+        const { email, password, ConfirmPassword,name, photoUrl } = data
+        console.log(name);
         if (password.length < 8) {
             setError('Password must be at least 8 characters');
             return;
@@ -32,9 +32,12 @@ const Register = () => {
         }
         setError('')
         createUser(email, password)
-            .then(result => {
-                const currentUser = result.user;
-                console.log('create user', currentUser);
+            .then(() => {
+                userUpdateProfile(name, photoUrl)
+                .then(result =>{
+                    console.log( 'PROFILE UPDATED',result.user);
+                  })
+                  .catch(error =>console.error(error))
                 reset()
                 toast.success('user created successfully')
             })
@@ -43,16 +46,16 @@ const Register = () => {
             })
     }
     return (
-        <div className="bgLogin-img grid lg:grid-cols-2">
-            <div className="p-12 lg:grid hidden">
-                <div className="flex flex-col items-center justify-center">
+        <div className="relative lg:flex ">
+            <div className="p-12 lg:flex hidden lg:w-1/2 h-screen bgLogin-img overflow-hidden fixed">
+                <div className="flex flex-col items-center justify-center ">
                     <img className="w-72" src="https://dreamslms-wp.dreamstechnologies.com/wp-content/uploads/2023/02/login-img.png" alt="" />
                     <h3 className="text-4xl font-semibold">Welcome to dreams LMS.</h3>
-                    <p className="text-sm py-6">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Adipisci facere incidunt illum blanditiis aut possimus dignissimos dolorem assumenda.</p>
+                    <p className="text-sm py-6">Lorem ipsum dolor, sit amet consectetur adipisicing elit.. Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores vitae expedita mollitia incidunt recusandae nemo unde cupiditate? </p>
                 </div>
             </div>
             {/* login form */}
-            <div className="md:px-20 md:py-6 p-10 bg-white">
+            <div className="md:px-20 md:py-6 p-10 bg-white w-full lg:w-1/2 absolute lg:left-1/2">
                 <div className="flex justify-between">
                     <img className="w-40" src="https://dreamslms-wp.dreamstechnologies.com/wp-content/themes/dreamslms/assets/images/logo.svg" alt="logo" />
                     <Link to="/" className="underline cursor-pointer hover:text-red-600">Back to home</Link>
@@ -66,11 +69,11 @@ const Register = () => {
                         </label>
                         <input
                             type="name"
-                            {...register('fullName', { required: true })}
+                            {...register('name', { required: true })}
                             placeholder="name"
                             className="input input-bordered"
                             required />
-                        {errors.fullName && <p className="text-red-500 text-sm pt-2">Provide your name</p>}
+                        {errors.name && <p className="text-red-500 text-sm pt-2">Provide your name</p>}
                     </div>
                     {/* EMAIL */}
                     <div className="form-control">
@@ -110,10 +113,12 @@ const Register = () => {
                                 placeholder="password"
                                 className="input input-bordered w-full"
                                 required />
-                            <button className="absolute top-3 right-3" onClick={() => setShowPassword(!showPassword)}>
+
+                            <p className="absolute top-3 right-3 cursor-pointer" onClick={() => setShowPassword(!showPassword)}>
                                 {showPassword ? <FaEyeSlash /> : <FaRegEye />}
-                            </button>
+                            </p>
                         </div>
+
                         {errors.password && <p className="text-red-500 text-sm pt-2">provide your password</p>
                         }
                         {error && <p className="text-red-500">{error}</p>}
