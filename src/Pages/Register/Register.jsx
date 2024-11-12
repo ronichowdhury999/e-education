@@ -5,6 +5,8 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { FaEyeSlash } from "react-icons/fa";
 import { FaRegEye } from "react-icons/fa";
+import { sendEmailVerification } from "firebase/auth";
+import { auth } from "../../Firebase/Firebase.config";
 
 const Register = () => {
     const { createUser, userUpdateProfile } = useAuth()
@@ -12,7 +14,7 @@ const Register = () => {
     const [showPassword, setShowPassword] = useState(false);
     const { register, reset, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
-        const { email, password, ConfirmPassword,name, photoUrl } = data
+        const { email, password, ConfirmPassword, name, photoUrl } = data
         console.log(name);
         if (password.length < 8) {
             setError('Password must be at least 8 characters');
@@ -33,13 +35,15 @@ const Register = () => {
         setError('')
         createUser(email, password)
             .then(() => {
+                sendEmailVerification(auth.currentUser)
+                    .then(() => {
+                        toast.success('check your email address and verification now !')
+                    })
                 userUpdateProfile(name, photoUrl)
-                .then(result =>{
-                    console.log( 'PROFILE UPDATED',result.user);
-                  })
-                  .catch(error =>console.error(error))
+                    .then(() => {
+                    })
+                    .catch()
                 reset()
-                toast.success('user created successfully')
             })
             .catch(error => {
                 toast.error(error.message)

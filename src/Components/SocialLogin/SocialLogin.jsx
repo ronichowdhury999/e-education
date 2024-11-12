@@ -9,9 +9,9 @@ const SocialLogin = () => {
             .then(result => {
                 const currentUser = result.user;
                 console.log(currentUser);
+                toast.success('User login successful');
             })
             .catch(error => console.error(error));
-            toast.success('User login successful');
     }
     return (
         <div className="my-4 flex gap-4 justify-center">

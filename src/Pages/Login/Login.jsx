@@ -3,18 +3,47 @@ import "./Login.css";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Components/Hooks/useAuth";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
+import { toast } from "react-toastify";
+import { useRef, useState } from "react";
+import { FaEyeSlash } from "react-icons/fa";
+import { FaRegEye } from "react-icons/fa";
 
 const Login = () => {
-    const { signInUser} = useAuth();
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { signInUser, forgatePasswordEmailReset } = useAuth();
+    const [showPassword, setShowPassword] = useState(false);
+    const emailRef = useRef(null)
+    console.log('emailref', emailRef.current);
+    const { register, reset, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
         const { email, password } = data;
         signInUser(email, password)
             .then(result => {
                 const currentUser = result.user;
+                if (currentUser.emailVerified) {
+                    console.log('email varified successfully');
+                } else {
+                    console.log('check your email varified');
+                }
+                reset()
+                toast.success('user login successful')
                 console.log('sign in user', currentUser);
             })
-            .catch(error => console.error(error))
+            .catch(error => {
+                toast.error(error.message)
+            })
+    }
+    // forgate password reset 
+    const handelEmailResetPassword = () => {
+        const email = emailRef.current.value
+        if (!email) {
+            console.error("provide the email.");
+            return;
+        }
+        forgatePasswordEmailReset(email)
+            .then(() => {
+                console.log('email reset successful');
+            })
+            .catch(error => console.log(error))
     }
     return (
         <div className="bgLogin-img h-screen border grid lg:grid-cols-2 md:grid-cols-1">
@@ -33,11 +62,13 @@ const Login = () => {
                 </div>
                 <h1 className="text-3xl font-bold mt-6">Login to your account</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
+                    {/* Email */}
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Email</span>
                         </label>
                         <input
+                            ref={emailRef}
                             type="email"
                             {...register('email', { required: true })}
                             placeholder="email"
@@ -45,33 +76,44 @@ const Login = () => {
                             required />
                         {errors.email && <p className="text-red-500 text-sm pt-2">provide your email</p>}
                     </div>
+                    {/* Password */}
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Password</span>
                         </label>
                         <div className="relative">
                             <input
-                                type='text'
+                                type={showPassword ? 'text' : 'password'}
                                 {...register('password', { required: true })}
                                 placeholder="password"
                                 className="input input-bordered w-full"
                                 required />
+                            <p className="absolute top-3 right-3 cursor-pointer" onClick={() => setShowPassword(!showPassword)}>
+                                {showPassword ? <FaEyeSlash /> : <FaRegEye />}
+                            </p>
                         </div>
                         {errors.password && <p className="text-red-500 text-sm pt-2">provide your password</p>
                         }
                     </div>
+                    {/* Terms and condition checkbox */}
                     <div className="py-4 flex items-center justify-between">
-                        <div>
-                            <input type="checkbox" name="" id="" />
-                            <span className="ml-2">Remember me</span>
+                        <div className="py-4">
+                            <input
+                                type="checkbox"
+                                {...register('termsAccepted', { required: true })}
+                            />
+                            <span className="ml-2">I accept the Terms and Conditions</span>
+                            {errors.termsAccepted && (
+                                <p className="text-red-500 text-sm pt-2">Please accept the terms and conditions</p>
+                            )}
                         </div>
-                        <div>
-                            <button>Forgot password</button>
-                        </div>
+
+                        {/* <ForgatePasswordEmail /> */}
+                        <button onClick={handelEmailResetPassword}>Forgate password</button>
                     </div>
                     <button className="mt-4 w-full btn btn-error">Login</button>
                 </form>
-               <SocialLogin/>
+                <SocialLogin />
                 <p className="text-center mt-4">New user ? Please  <Link to="/register" className="text-red-500 ml-4">Create an account</Link></p>
             </div>
         </div>

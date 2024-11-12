@@ -46,11 +46,11 @@ const Navbar = () => {
                                 {user && <li><a href="https://mail.google.com/mail" target="_blank">
                                     <span className="font-bold">User:</span>
                                     {user?.email || user.displayName}</a></li>}
-                                <div className="avatar py-2 ml-4">
+                               {user?.photoURL && <div className="avatar py-2 ml-4">
                                     <div className="ring-blue-500 ring-offset-base-100 w-10 rounded-full ring ring-offset-2">
                                         <img src={user?.photoURL} alt="Photo" />
                                     </div>
-                                </div>
+                                </div>}
                             </ul>
                         </div>
                         <img className="md:w-40 w-32" src="https://dreamslms-wp.dreamstechnologies.com/wp-content/themes/dreamslms/assets/images/logo.svg" alt="logo" />
@@ -60,11 +60,11 @@ const Navbar = () => {
                             {items}
                             {user && <li><a href="https://mail.google.com/mail" target="_blank"><span className="font-bold">User :</span> {user?.email || user?.displayName}</a></li>}
                         </ul>
-                        <div className="avatar">
+                       {user?.photoURL && <div className="avatar">
                             <div className="ring-blue-500 ring-offset-base-100 w-10 rounded-full ring ring-offset-2">
                                 <img src={user?.photoURL} alt="Photo" />
                             </div>
-                        </div>
+                        </div>}
                     </div>
                     <div className="navbar-end">
                         {user
