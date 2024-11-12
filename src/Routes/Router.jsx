@@ -8,6 +8,7 @@ import ContactUs from "../Pages/ContactUs/ContactUs"
 import Login from "../Pages/Login/Login"
 import Register from "../Pages/Register/Register"
 import Students from "../Pages/Student/Students"
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute"
 
 const Router = createBrowserRouter([
     {
@@ -21,7 +22,9 @@ const Router = createBrowserRouter([
             },
             {
                 path: '/aboutUs',
-                element: <AboutUs />
+                element: <ProtectedRoute>
+                    <AboutUs />
+                </ProtectedRoute>
             },
             {
                 path: '/instructors',
@@ -29,8 +32,8 @@ const Router = createBrowserRouter([
                 loader: () => fetch('/instructors.json')
             },
             {
-                path:'students',
-                element:<Students/>
+                path: 'students',
+                element: <Students />
             },
             {
                 path: '/blog',

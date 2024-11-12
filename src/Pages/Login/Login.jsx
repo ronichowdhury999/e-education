@@ -1,16 +1,19 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Components/Hooks/useAuth";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import { toast } from "react-toastify";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaEyeSlash } from "react-icons/fa";
 import { FaRegEye } from "react-icons/fa";
 
 const Login = () => {
-    const { signInUser, forgatePasswordEmailReset } = useAuth();
+    const { signInUser, user, } = useAuth();
     const [showPassword, setShowPassword] = useState(false);
+    const location = useLocation()
+    const navigate = useNavigate();
+    console.log(location);
     const emailRef = useRef(null)
     console.log('emailref', emailRef.current);
     const { register, reset, handleSubmit, formState: { errors } } = useForm();
@@ -26,25 +29,30 @@ const Login = () => {
                 }
                 reset()
                 toast.success('user login successful')
-                console.log('sign in user', currentUser);
+                // navigate('/aboutUs')
             })
             .catch(error => {
                 toast.error(error.message)
             })
     }
     // forgate password reset 
-    const handelEmailResetPassword = () => {
-        const email = emailRef.current.value
-        if (!email) {
-            console.error("provide the email.");
-            return;
+    // const handelEmailResetPassword = () => {
+    //     const email = emailRef.current.value
+    //     if (!email) {
+    //         console.error("provide the email.");
+    //         return;
+    //     }
+    //     forgatePasswordEmailReset(email)
+    //         .then(() => {
+    //             console.log('email reset successful');
+    //         })
+    //         .catch(error => console.log(error))
+    // }
+    useEffect(() => {
+        if (user) {
+            navigate(location?.state || '/')
         }
-        forgatePasswordEmailReset(email)
-            .then(() => {
-                console.log('email reset successful');
-            })
-            .catch(error => console.log(error))
-    }
+    }, [user])
     return (
         <div className="bgLogin-img h-screen border grid lg:grid-cols-2 md:grid-cols-1">
             <div className="p-12 lg:grid hidden">
@@ -109,7 +117,7 @@ const Login = () => {
                         </div>
 
                         {/* <ForgatePasswordEmail /> */}
-                        <button onClick={handelEmailResetPassword}>Forgate password</button>
+                        <button>Forgate password</button>
                     </div>
                     <button className="mt-4 w-full btn btn-error">Login</button>
                 </form>

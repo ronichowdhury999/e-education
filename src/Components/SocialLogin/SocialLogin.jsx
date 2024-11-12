@@ -3,7 +3,7 @@ import { FaGithub } from "react-icons/fa6";
 import useAuth from "../Hooks/useAuth";
 import { toast } from "react-toastify";
 const SocialLogin = () => {
-    const { googleSignInUser,githubLoginUser } = useAuth()
+    const { googleSignInUser, githubLoginUser } = useAuth()
     const handelSocialLogin = socialProvider => {
         socialProvider()
             .then(result => {
@@ -15,10 +15,10 @@ const SocialLogin = () => {
     }
     return (
         <div className="my-4 flex gap-4 justify-center">
-            <button onClick={()=>handelSocialLogin(googleSignInUser)} className="btn btn-outline btn-error">
+            <button onClick={() => handelSocialLogin(googleSignInUser)} className="btn btn-outline btn-error">
                 <FcGoogle />Google
             </button>
-            <button onClick={()=> handelSocialLogin(githubLoginUser)} className="btn btn-outline btn-error">
+            <button onClick={() => handelSocialLogin(githubLoginUser)} className="btn btn-outline btn-error">
                 <FaGithub className="text-black" />Github
             </button>
         </div>

@@ -4,25 +4,31 @@ import { auth } from "../Firebase/Firebase.config";
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(null)
 const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState()
+    const [user, setUser] = useState('')
+    const [loading, setLoading] = useState(true)
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
 
     const createUser = (email, password) => {
+        setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
     const signInUser = (email, password) => {
+        setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
     const userUpdateProfile = async (name, photoUrl) => {
+        setLoading(true)
         return updateProfile(auth.currentUser, {
             displayName: name, photoURL: photoUrl
         })
     }
     const googleSignInUser = () => {
+        setLoading(true)
         return signInWithPopup(auth, googleProvider)
     }
     const githubLoginUser = () => {
+        setLoading(true)
         return signInWithPopup(auth, githubProvider)
     }
     const logOut = () => {
@@ -36,6 +42,7 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             console.log(currentUser);
             setUser(currentUser)
+            setLoading(false)
         })
         return () => {
             unsubscribe();
@@ -49,7 +56,8 @@ const AuthProvider = ({ children }) => {
         githubLoginUser,
         logOut,
         forgatePasswordEmailReset,
-        user
+        user,
+        loading
     }
     return (
         <AuthContext.Provider value={authInFo}>
