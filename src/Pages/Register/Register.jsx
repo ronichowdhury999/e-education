@@ -51,7 +51,7 @@ const Register = () => {
     }
     return (
         <div className="relative lg:flex ">
-            <div className="p-12 lg:flex hidden lg:w-1/2 h-screen bgLogin-img overflow-hidden fixed">
+            <div className="p-12 lg:flex hidden lg:w-1/2 h-screen bgLogin-img overflow-hidden fixed border">
                 <div className="flex flex-col items-center justify-center ">
                     <img className="w-72" src="https://dreamslms-wp.dreamstechnologies.com/wp-content/uploads/2023/02/login-img.png" alt="" />
                     <h3 className="text-4xl font-semibold">Welcome to dreams LMS.</h3>
