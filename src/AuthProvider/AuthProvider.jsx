@@ -14,11 +14,10 @@ const AuthProvider = ({ children }) => {
     const signInUser = (email, password) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
-    const userUpdateProfile = (name,photoUrl) => {
-        return updateProfile(auth.currentUser), {
-            displayName:name,
-            photoURL : photoUrl
-        }
+    const userUpdateProfile = async (name, photoUrl) => {
+        return updateProfile(auth.currentUser, {
+            displayName: name, photoURL: photoUrl
+        })
     }
     const googleSignInUser = () => {
         return signInWithPopup(auth, googleProvider)
