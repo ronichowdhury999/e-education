@@ -65,7 +65,7 @@ const AboutUs = () => {
                 </div>
             </Container>
             <div className="bg-about-bg3 h-full my-10">
-                <Container className='text-center text-white items-center justify-center py-20'>
+                <Container className='text-center items-center justify-center py-20'>
                     <h4 className='text-2xl font-bold'>Check out these real reviews</h4>
                     <h2 className='text-4xl font-bold'>Users-love-us Don't take it from us.</h2>
                 </Container>
