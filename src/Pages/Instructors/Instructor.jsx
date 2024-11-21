@@ -11,7 +11,7 @@ const Instructor = ({instructor}) => {
     };
     return (
         <div>
-            <div onClick={handleClick} className="card bg-base-100 shadow-xl border p-8 cursor-pointer">
+            <div onClick={handleClick} className="card bg-base-100 shadow-xl border p-8 cursor-pointer hover:bg-base-300">
                 <figure className="px-10 pt-10">
                     <img
                         src={image}
