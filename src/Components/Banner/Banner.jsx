@@ -18,11 +18,11 @@ const Banner = () => {
             <p className="tracking-wider text-base">
               The Leader in Online Learning
             </p>
-            <p className="text-5xl font-bold md:max-w-[350px] lg:max-w-[500px]">
-              Engaging & Accessible Online Courses For All
+            <p className="text-5xl font-bold md:max-w-[350px] lg:max-w-[500px] mt-4">
+              Engaging & <br /> Accessible Online Courses For All
             </p>
           </div>
-          <div className="relative flex-1 w-full">
+          <div className="relative flex-1 w-full py-6">
             <input
               onChange={(e) => setSearch(e.target.value)}
               value={search}
@@ -47,14 +47,14 @@ const Banner = () => {
               <CountUp end={250} duration={2} delay={2} />+
             </h2>
             <h2 className="text-5xl font-bold">4.5</h2>
-            <img src={starImg} alt="starImg" width={200} height={200} />
+            <img src={starImg} alt="starImg" width={150} height={200} />
           </div>
         </div>
         <div className="flex justify-center items-center">
           <img
             src={bannerImg}
             alt="bannerImg"
-            width={500}
+            width={400}
             height={500}
             className="object-cover"
           />
