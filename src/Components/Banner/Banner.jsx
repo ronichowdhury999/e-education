@@ -33,10 +33,10 @@ const Banner = () => {
             {search ? (
               <IoCloseOutline
                 onClick={() => setSearch("")}
-                className="absolute right-4 top-3 text-gray-500 text-2xl"
+                className="absolute right-4 top-9 text-gray-500 text-2xl"
               />
             ) : (
-              <CiSearch className="absolute right-4 top-3 text-gray-500 text-2xl" />
+              <CiSearch className="absolute right-4 top-9 text-gray-500 text-2xl" />
             )}
           </div>
           <p className="text-base max-w-[250px]">
