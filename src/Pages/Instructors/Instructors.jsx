@@ -3,6 +3,7 @@ import Container from "../../Components/Container/Container";
 import { useState } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
+import Instructorr from "./Instructorr";
 
 const Instructors = () => {
     const instructorsData = useLoaderData()
@@ -20,9 +21,8 @@ const Instructors = () => {
             <div className="mt-20 grid md:grid-cols-3 grid-cols-1 gap-6 rounded-lg">
 
                 {
-                    instructorsData && instructorsData.slice(0, showInstructor).map(instructor => <Instru)
+                    instructorsData && instructorsData.slice(0, showInstructor).map(instructor => <Instructorr key={instructor.id} instructor={instructor}></Instructorr>)
                 }
-                {/* key={instructor.id} instructor={instructor} */}
             </div>
             <div className="text-center my-14">
                 {
