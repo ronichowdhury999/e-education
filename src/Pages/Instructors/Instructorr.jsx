@@ -1,5 +1,5 @@
 
-const Instructor = ({instructor}) => {
+const Instructorr = ({instructor}) => {
     const {name,skillPosition,image,email,courseCredit} = instructor
     const handleClick = () => {
         // Scroll to the top of the page smoothly
@@ -36,4 +36,4 @@ const Instructor = ({instructor}) => {
     )
 }
 
-export default Instructor
+export default Instructorr

@@ -1,7 +1,6 @@
 import { Link, useLoaderData } from "react-router-dom"
 import Container from "../../Components/Container/Container";
 import { useState } from "react";
-import Instructor from "./instructor";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 
@@ -21,8 +20,9 @@ const Instructors = () => {
             <div className="mt-20 grid md:grid-cols-3 grid-cols-1 gap-6 rounded-lg">
 
                 {
-                    instructorsData && instructorsData.slice(0, showInstructor).map(instructor => <Instructor key={instructor.id} instructor={instructor} />)
+                    instructorsData && instructorsData.slice(0, showInstructor).map(instructor => <Instru)
                 }
+                {/* key={instructor.id} instructor={instructor} */}
             </div>
             <div className="text-center my-14">
                 {
