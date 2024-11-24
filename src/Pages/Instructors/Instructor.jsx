@@ -1,5 +1,4 @@
 
-
 const Instructor = ({instructor}) => {
     const {name,skillPosition,image,email,courseCredit} = instructor
     const handleClick = () => {

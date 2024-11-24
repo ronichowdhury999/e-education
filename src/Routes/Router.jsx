@@ -12,6 +12,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute"
 import Pages from "../Pages/Courses/Pages"
 import Categories from "../Pages/Courses/Categories"
 import DetailsPage from "../Pages/Courses/DetailsPage"
+import Blog from "../Pages/Blog/Blog"
 
 const Router = createBrowserRouter([
     {
@@ -59,7 +60,7 @@ const Router = createBrowserRouter([
               },
             {
                 path: '/blog',
-                element: <ContactUs />
+                element: <Blog />
             },
             {
                 path: '/contactUs',

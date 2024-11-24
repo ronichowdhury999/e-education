@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import Student from "./Student";
 import Slider from "react-slick";
 import Navbar from "../../Components/Navbar/Navbar";
+import Footer from "../../Components/Footer/Footer";
 
 const Students = () => {
   const settings = {
@@ -282,6 +283,7 @@ const Students = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

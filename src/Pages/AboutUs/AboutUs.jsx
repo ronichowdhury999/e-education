@@ -6,12 +6,13 @@ import become2 from './../../assets/become-02.png'
 import { AiFillCheckCircle } from 'react-icons/ai';
 import Container from '../../Components/Container/Container';
 import Navbar from '../../Components/Navbar/Navbar';
+import Footer from '../../Components/Footer/Footer';
 
 
 const AboutUs = () => {
     return (
-      <div>
-          <Navbar/>
+        <div>
+            <Navbar />
             <div className="text-center my-20 bg-about-bg1 bg-inherit h-28 justify-center items-center">
                 <h2 className='text-5xl font-bold'>Abut Us</h2>
                 <div className='flex justify-center items-center gap-4 my-8'> <Link to="/" className='font-semibold'>Home</Link> <span className='bg-orange-500 w-2 h-1 rounded-xl'> {""}</span> <h3 className='font-semibold'>About Us</h3> </div>
@@ -85,8 +86,8 @@ const AboutUs = () => {
                     </div>
                     <img src={become1} alt="" className='w-60' />
                 </div>
-
             </Container>
+            <Footer />
         </div>
 
 

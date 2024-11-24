@@ -11,6 +11,7 @@ import { MdCollectionsBookmark } from "react-icons/md";
 import { FaStopwatch } from "react-icons/fa6";
 import { BsBarChartFill } from "react-icons/bs";
 import Navbar from "../../Components/Navbar/Navbar";
+import Footer from "../../Components/Footer/Footer";
 // import { FaRegHeart } from "react-icons/fa";
 
 
@@ -164,7 +165,7 @@ const DetailsPage = () => {
             </div>
             </div>
 
-
+<Footer/>
         </div>
     );
 };

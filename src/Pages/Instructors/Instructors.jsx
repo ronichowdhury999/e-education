@@ -3,6 +3,7 @@ import Container from "../../Components/Container/Container";
 import { useState } from "react";
 import Instructor from "./instructor";
 import Navbar from "../../Components/Navbar/Navbar";
+import Footer from "../../Components/Footer/Footer";
 
 const Instructors = () => {
     const instructorsData = useLoaderData()
@@ -26,11 +27,12 @@ const Instructors = () => {
             <div className="text-center my-14">
                 {
                     showInstructor < instructorsData.length && <div>
-                        <button onClick={() => { setShowInstructor(prevData => prevData + 3) }} className="btn btn-error ">View all</button>
+                        <button onClick={() => { setShowInstructor(prevData => prevData + 3) }} className="btn text-white btn-error ">View all</button>
                     </div>
                 }
             </div>
         </Container>
+        <Footer/>
         </div>
     )
 }
