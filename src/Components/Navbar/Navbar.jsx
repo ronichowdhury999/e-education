@@ -15,7 +15,7 @@ const Navbar = () => {
             <NavLink className={({ isActive, isPending }) => isPending ? 'pending' : isActive ? 'text-red-500 rounded-lg' : ''} to="/aboutUs"><li><a>About Us</a></li></NavLink>
             <NavLink className={({ isActive, isPending }) => isPending ? 'pending' : isActive ? 'text-red-500 rounded-lg' : ''} to="/instructors"><li><a>Instructors</a></li></NavLink>
             <NavLink className={({ isActive, isPending }) => isPending ? 'pending' : isActive ? 'text-red-500 rounded-lg' : ''} to="/students"><li><a>Student</a></li></NavLink>
-            <NavLink className={({ isActive, isPending }) => isPending ? 'pending' : isActive ? 'text-red-500 rounded-lg' : ''} to="/pages"><li><a>Pages</a></li></NavLink>
+            <NavLink className={({ isActive, isPending }) => isPending ? 'pending' : isActive ? 'text-red-500 rounded-lg' : ''} to="/pages"><li><a>Courses</a></li></NavLink>
             <NavLink className={({ isActive, isPending }) => isPending ? 'pending' : isActive ? 'text-red-500 rounded-lg' : ''} to="/blog"><li><a>Blog</a></li></NavLink>
             <NavLink className={({ isActive, isPending }) => isPending ? 'pending' : isActive ? 'text-red-500 rounded-lg' : ''} to="/contactUs"><li><a>Contact Us</a></li></NavLink>
         </>
