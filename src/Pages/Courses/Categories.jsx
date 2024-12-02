@@ -8,11 +8,6 @@ import "./Categories.css"
 const Categories = () => {
     const { category } = useParams([])
     console.log(category);
-
-
-
-
-
     const [pages, setpage] = useState([])
     const [grid, setgrid] = useState(true)
     const [gridcol1, setGridcol1] = useState(false)
